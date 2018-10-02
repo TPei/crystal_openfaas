@@ -1,0 +1,7 @@
+name: crystal_faas_function
+version: 0.1.0
+
+# dependencies:
+#   pg:
+#     github: will/crystal-pg
+#     version: "~> 0.5"
