@@ -25,7 +25,7 @@ See [crystal_faas_whalesay_demo](https://github.com/TPei/crystal_faas_whalesay_d
 
 As with all OpenFaaS templates, this template creates a `my_function/handler.cr` file, as well as a `my_function.yml`. In addition to this, a `my_function/shard.yml` is created for your dependencies.
 
-When building your function with `faas-cli build -f my_function.yml` your dependencies will be resolved according yo your shard file.
+When building your function with `faas-cli build -f my_function.yml` your dependencies will be resolved according to your shard file.
 
 #### Code
 `Hander#run` gets passed a `req` String, if you want to handle json, simply do `JSON.parse(req)` and do your thing :)
