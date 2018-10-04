@@ -1,4 +1,4 @@
-# Templates
+# Crystal OpenFaaS Template
 
 Inofficial OpenFaaS template for the crystal programming language.
 
@@ -18,6 +18,42 @@ faas-cli new --lang crystal my_function
 to create a new crystal function
 
 See [crystal_faas_whalesay_demo](https://github.com/TPei/crystal_faas_whalesay_demo) for an implementation example.
+
+### Development
+
+#### General
+
+As with all OpenFaaS templates, this template creates a `my_function/handler.cr` file, as well as a `my_function.yml`. In addition to this, a `my_function/shard.yml` is created for your dependencies.
+
+When building your function with `faas-cli build -f my_function.yml` your dependencies will be resolved according yo your shard file.
+
+#### Code
+```
+require "json"
+
+class Handler
+  def run(req : String)
+    whale = <<-WHALE
+     #{"-" * req.size}
+    < #{req} >
+     #{"-" * req.size}
+           \\
+            \\
+             \\
+              \\       ##          .
+               \\## ## ##        ==
+              ## ## ## ## ##    ===
+           /"""""""""""""""""\\___/ ===
+    ~~~ ~~{~ ~~~  ~~~~~ ~~~~~ ~~~/~~===-~ ~~~~
+           \\______ O           __/
+            \\    \\         __/
+             \\____\\_______/
+    WHALE
+    return JSON::Any.new(whale)
+  end
+end
+```
+`Hander#run` gets passed a `req` String, if you want to handle json, simply do `JSON.parse(req)` and do your thing :)
 
 ## Templates Developers / Contributors
 
