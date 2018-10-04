@@ -28,7 +28,11 @@ As with all OpenFaaS templates, this template creates a `my_function/handler.cr`
 When building your function with `faas-cli build -f my_function.yml` your dependencies will be resolved according yo your shard file.
 
 #### Code
-```
+`Hander#run` gets passed a `req` String, if you want to handle json, simply do `JSON.parse(req)` and do your thing :)
+
+Your function always needs to return JSON, like so: `return JSON::Any.new("Jut a String, but JSON!")`
+
+```crystal
 require "json"
 
 class Handler
@@ -40,11 +44,11 @@ class Handler
            \\
             \\
              \\
-              \\       ##          .
-               \\## ## ##        ==
-              ## ## ## ## ##    ===
-           /"""""""""""""""""\\___/ ===
-    ~~~ ~~{~ ~~~  ~~~~~ ~~~~~ ~~~/~~===-~ ~~~~
+              \\       ##               .
+               \\## ## ##             ==
+              ## ## ## ## ##         ===
+           /"""""""""""""""""\\___/ ====
+    ~~~ ~~{~ ~~~  ~~~~~ ~~~~~ ~~~/~~====-~ ~~~~
            \\______ O           __/
             \\    \\         __/
              \\____\\_______/
@@ -53,7 +57,6 @@ class Handler
   end
 end
 ```
-`Hander#run` gets passed a `req` String, if you want to handle json, simply do `JSON.parse(req)` and do your thing :)
 
 ## Templates Developers / Contributors
 
