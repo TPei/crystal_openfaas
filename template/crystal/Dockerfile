@@ -1,4 +1,4 @@
-FROM crystallang/crystal:0.26.1 as builder
+FROM crystallang/crystal:0.27.0 as builder
 
 RUN apt update \
     && apt install -y curl \
@@ -13,7 +13,7 @@ COPY function/shard.yml shard.yml
 RUN shards install
 RUN crystal build main.cr -o handler --release
 
-FROM crystallang/crystal:0.26.1
+FROM crystallang/crystal:0.27.0
 RUN apt install ca-certificates
 
 # Add non root user
