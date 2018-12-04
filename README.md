@@ -11,7 +11,7 @@ Go to your openFaaS project and execute:
 faas-cli template pull https://github.com/TPei/crystal_faas_template
 ```
 
-Alternatively, the template is also available via the OpenFaaS function store
+Alternatively, the template is also available via the OpenFaaS template store
 ```
 faas-cli template store pull crystal
 ```
