@@ -11,7 +11,7 @@ COPY . .
 
 COPY function/shard.yml shard.yml
 RUN shards install
-RUN crystal build main.cr -o handler
+RUN crystal build main.cr -o handler --release
 
 FROM crystallang/crystal:0.26.1
 RUN apt install ca-certificates
