@@ -36,7 +36,7 @@ When building your function with `faas-cli build -f my_function.yml` your depend
 #### Code
 `Hander#run` gets passed a `req` String, if you want to handle json, simply do `JSON.parse(req)` and do your thing :)
 
-Your function always needs to return JSON, like so: `return JSON::Any.new("Jut a String, but JSON!")`
+Your function always needs to return JSON, like so: `return JSON::Any.new("Just a String, but JSON!")`
 
 ```crystal
 require "json"
