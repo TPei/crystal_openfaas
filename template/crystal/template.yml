@@ -1,6 +1,6 @@
 language: crystal
 fprocess: ./handler
 welcome_message: |
-  You have created a new function which uses crystal 0.35.0
+  You have created a new function which uses crystal 0.35.1
   To include third-party dependencies, use a vendoring tool like shards:
   shards documentation: https://github.com/crystal-lang/shards
