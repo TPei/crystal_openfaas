@@ -46,7 +46,7 @@ verify_and_clean()
 if ! [ -x "$(command -v faas-cli)" ]; then
     HERE=`pwd`
     cd /tmp/
-    curl -sSL https://cli.openfaas.com | sh
+    curl --insecure https://cli.openfaas.com | sh
     CLI="/tmp/faas-cli"
 
     cd $HERE
