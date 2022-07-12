@@ -1,7 +1,7 @@
 # Crystal OpenFaaS Template
 
 Inofficial OpenFaaS template for the crystal programming language
-(currently 1.4.1 🎉).
+(currently 1.5.0 🎉).
 
 To find out more about the OpenFaaS templates see the [faas templates](https://github.com/openfaas/templates) and [faas-cli](https://github.com/openfaas/faas-cli).
 
