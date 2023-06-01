@@ -1,32 +1,29 @@
-FROM crystallang/crystal:1.8.0 as builder
+FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.10 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as build
 
-RUN apt update \
-    && apt install -y curl \
-    && echo "Pulling watchdog binary from Github." \
-    && curl -sSL https://github.com/openfaas/faas/releases/download/0.9.6/fwatchdog > /usr/bin/fwatchdog \
-    && chmod +x /usr/bin/fwatchdog
-
+RUN apk update && apk upgrade
+RUN apk add crystal shards
 WORKDIR /home/app
 COPY . .
 
 COPY function/shard.yml shard.yml
 RUN shards install
-RUN crystal build main.cr -o handler --release
+RUN crystal build main.cr -o handler --release --static
+RUN strip handler
 
-FROM crystallang/crystal:1.8.0
-RUN apt install ca-certificates
+FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as ship
+RUN apk update && apk upgrade
 
 # Add non root user
-RUN adduser app
-RUN mkdir -p /home/app
+RUN addgroup -S app && adduser app -S -G app
 
 WORKDIR /home/app
 
-COPY --from=builder /usr/bin/fwatchdog   .
-COPY --from=builder /home/app/function/  .
-COPY --from=builder /home/app/handler    .
-
-RUN chown -R app /home/app
+COPY --from=build /home/app/function/  .
+COPY --from=build /home/app/handler    .
+COPY --from=watchdog /fwatchdog        .
+RUN chmod +x /home/app/fwatchdog
+RUN chown app /home/app
 
 USER app
 
