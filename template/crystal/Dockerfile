@@ -3,6 +3,7 @@ FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as build
 
 RUN apk update && apk upgrade
 RUN apk add crystal shards
+RUN apk cache clean
 WORKDIR /home/app
 COPY . .
 
@@ -12,7 +13,7 @@ RUN crystal build main.cr -o handler --release --static
 RUN strip handler
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as ship
-RUN apk update && apk upgrade
+RUN apk update && apk upgrade && apk cache clean
 # Add non root user
 # Add non root user
 RUN addgroup -S app && adduser app -S -G app
