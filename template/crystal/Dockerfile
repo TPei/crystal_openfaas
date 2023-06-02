@@ -13,19 +13,16 @@ RUN strip handler
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as ship
 RUN apk update && apk upgrade
-
+# Add non root user
 # Add non root user
 RUN addgroup -S app && adduser app -S -G app
 
 WORKDIR /home/app
+USER app
 
 COPY --from=build /home/app/function/  .
 COPY --from=build /home/app/handler    .
-COPY --from=watchdog /fwatchdog        .
-RUN chmod +x /home/app/fwatchdog
-RUN chown app /home/app
-
-USER app
+COPY --from=watchdog /fwatchdog /home/app/fwatchdog
 
 ENV fprocess="./handler"
 EXPOSE 8080
