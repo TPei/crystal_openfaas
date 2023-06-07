@@ -1,4 +1,4 @@
-# Crystal OpenFaaS Template
+# Crystal OpenFaaS Template  [![Runs on Crystal](https://repology.org/badge/version-for-repo/alpine_edge/crystal-lang.svg)](https://repology.org/project/crystal-lang/versions)
 
 Inofficial OpenFaaS template for the crystal programming language 🎉
 
