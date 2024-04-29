@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.12 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.16 as watchdog
 FROM --platform=${TARGETPLATFORM:-linux/amd64} alpine as build
 
 RUN apk update && apk upgrade
